@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pak Visa Replica</title>
+  <style>
+    /* General Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Segoe UI", "Arial Nova Cond", sans-serif;
+    }
+
+    body {
+      background: #f9f9f9;
+      color: #222;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    /* Header */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background: white;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      z-index: 100;
+    }
+
+    .header-content {
+      max-width: 1100px;
+      margin: auto;
+      padding: 10px 4px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo img {
+      width: 100%;
+      max-width: 200px;
+      height: 45px;
+      object-fit: contain;
+    }
+
+    /* Menu Button */
+    .menu-btn {
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: #004b8d;
+      font-size: 28px;
+      margin-right: 10px;
+    }
+
+    /* Dropdown Menu */
+    .nav-links {
+      background-color: #0a1a2f;
+      color: white;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease-in-out;
+      -webkit-overflow-scrolling: touch; /* smooth iOS scrolling */
+    }
+
+    .nav-links.open {
+      max-height: 300px; /* enough to fit menu items */
+      overflow-y: auto;
+    }
+
+    .nav-links ul {
+      list-style: none;
+      padding: 15px 25px;
+    }
+
+    .nav-links li {
+      padding: 10px 0;
+      font-size: 1.125rem; /* 18px */
+      transition: color 0.2s;
+    }
+
+    .nav-links li a {
+      text-decoration: none;
+      color: white;
+    }
+
+    .nav-links li:hover a {
+      color: #00c853;
+    }
+
+    /* Main Content */
+    main {
+      margin-top: 112px;
+      text-align: center;
+      background: #ffffff;
+      padding: 25px 20px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+      width: 87%;
+      max-width: 400px;
+      margin-bottom: 100px;
+      position: relative;
+    }
+
+    main::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 55px;
+      height: 4px;
+      background-color: #19609d;
+    }
+
+    .titlee {
+      margin-top: 20px;
+      color: #2c7abe;
+      font-size: 1.25rem; /* 20px */
+      font-weight: 600;
+    }
+
+    .title {
+      color: #2473b8;
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin-top: 14px;
+      margin-bottom: 14px;
+      text-align: center;
+      position: relative;
+    }
+
+    .title::after {
+      content: "";
+      display: block;
+      width: 250px;
+      height: 0.9px;
+      background-color: #dddddd;
+      margin: 24px auto 0;
+      border-radius: 2px;
+    }
+
+    .photo {
+      position: relative;
+      display: inline-block;
+      overflow: hidden;
+      width: 100%;
+      max-width: 150px;
+      height: auto;
+    }
+
+    .photo img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 0;
+    }
+
+    .watermark {
+      position: absolute;
+      font-size: 0.9rem; /* responsive */
+      font-weight: 700;
+      color: rgba(0,0,0,0.15);
+      white-space: nowrap;
+      pointer-events: none;
+      transform: rotate(-40deg);
+      transform-origin: left bottom;
+      left: 0;
+    }
+
+    .watermark.line1 { bottom: 95px; }
+    .watermark.line2 { bottom: 10px; }
+    .watermark.line3 { top: 220px; }
+
+    .info p {
+      margin-bottom: 6px;
+      font-size: 1rem;
+      color: #5a5b5d;
+    }
+
+    .label {
+      font-weight: bold;
+      font-size: 1.0625rem; /* 17px */
+      margin-top: 20px;
+    }
+
+    .labell {
+      font-weight: 430;
+      margin-top: 20px;
+    }
+
+    .login-btn {
+      background: #004b8d;
+      color: white;
+      font-size: 1rem;
+      font-weight: 600;
+      border: none;
+      border-radius: 4px;
+      padding: 10px 20px;
+      margin-top: 20px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .login-btn:hover {
+      background: #0065c0;
+    }
+
+    footer {
+      text-align: center;
+      padding: 15px 10px;
+      font-size: 0.8125rem; /* 13px */
+      color: #444;
+      border-top: 1px solid #ddd;
+      background: #fff;
+      width: 100%;
+      bottom: 0;
+      left: 0;
+    }
+
+    @media (min-width: 768px) {
+      .menu-btn { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <div class="header-content">
+      <div class="logo">
+       <img
+  src="imagess/mylogo.png"
+  alt="Pak Visa Logo"
+  loading="eager"
+  decoding="async"
+/>
+
+      </div>
+      <button class="menu-btn" id="menuBtn">&#9776;</button>
+    </div>
+
+    <!-- Dropdown Navigation -->
+    <div class="nav-links" id="navMenu">
+      <ul>
+        <li><a href="https://visa.nadra.gov.pk/e-visa/welcome">Home</a></li>
+        <li><a href="https://visa.nadra.gov.pk/how-to-apply/">Guidelines</a></li>
+        <li><a href="https://visa.nadra.gov.pk/download/">Downloads</a></li>
+        <li><a href="https://visa.nadra.gov.pk/faqs/">FAQ</a></li>
+        <li><a href="https://visa.nadra.gov.pk/contact/">Contact Us</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main>
+    <p class="titlee">Visa Reference Number –</p>
+    <p class="title">88003897781</p>
+
+    <div class="photo">
+      <img src="imagess/mypic.png" alt="Applicant Photo" loading="eager"
+  decoding="async" />
+      <div class="watermark line1">03045 samadkhan 03045 samadkhan</div>
+      <div class="watermark line2">03045 samadkhan 03 samadkhan 5 samadkhan 03045 samadkhan</div>
+      <div class="watermark line3">03045 samadkhan 03045 samadkhan 03045 samadkhan 03045 samadkhan</div>
+    </div>
+
+    <div class="info">
+      <p class="labell">NAME</p>
+      <p>Alokozay Abdul Majeed</p>
+
+      <p class="label">Passport No</p>
+      <p>P05621890</p>
+
+      <p class="label">Passport Country</p>
+      <p>Afghanistan</p>
+
+      <p class="labell">Visa Category</p>
+      <p>Tourist/Visit</p>
+
+      <p class="labell">Visa Sub Category</p>
+      <p>Individual (less Than 3 Months)</p>
+
+      <p class="labell">Application Type</p>
+      <p>Entry</p>
+
+      <p class="labell">Staying Facility</p>
+      <p>Multiple Entry - Upto 1 Year</p>
+
+      <p class="labell">Visa Start Date</p>
+      <p>5 Oct 2025</p>
+
+      <p class="labell">Visa End Date</p>
+      <p>4 Apr 2026</p>
+
+      <p class="labell">Visa Duration</p>
+      <p>60 day(s)</p>
+
+      <a href="https://visa.nadra.gov.pk/e-visa/authenticate"><button class="login-btn">Back to Login</button></a>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    COPYRIGHT © 2015 - 2025 MINISTRY OF INTERIOR, GOVERNMENT OF PAKISTAN - V: 5.5.8
+  </footer>
+
+  <!-- JavaScript -->
+  <script>
+    const menuBtn = document.getElementById("menuBtn");
+    const navMenu = document.getElementById("navMenu");
+    let menuOpen = false;
+
+    menuBtn.addEventListener("click", () => {
+      navMenu.classList.toggle("open");
+      menuBtn.innerHTML = menuOpen ? "&#9776;" : "&times;";
+      menuOpen = !menuOpen;
+    });
+  </script>
+</body>
+</html>
