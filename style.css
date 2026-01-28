@@ -1,0 +1,525 @@
+        #page-loader {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: #f4f4f4;
+        z-index: 99999;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: opacity 0.5s ease;
+    }
+
+    .ring-spinner {
+        position: relative;
+        width: 95px;
+        height: 95px;
+    }
+
+    .ring {
+        position: absolute;
+        border-radius: 50%;
+        border: 2px solid transparent;
+        border-top-color: #3579b4;
+        border-right-color: #3579b4;
+        box-sizing: border-box;
+    }
+
+    .ring:nth-child(1) { top: 0; left: 0; right: 0; bottom: 0; animation: spin 1s linear infinite; }
+    .ring:nth-child(2) { top: 15px; left: 15px; right: 15px; bottom: 15px; animation: spin 1.5s linear infinite reverse; }
+    .ring:nth-child(3) { top: 30px; left: 30px; right: 30px; bottom: 30px; animation: spin 0.8s linear infinite; }
+
+    @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+    }
+
+    /* ================= GENERAL RESET ================= */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Segoe UI", "Arial Nova Cond", sans-serif;
+      transition: background-color 0.5s ease;
+    }
+
+    body {
+      background: #f9f9f9;
+      color: #222;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+      cursor: pointer;
+    }
+
+    body.swapped-background {
+      background: #ffffff !important;
+    }
+
+    /* ================= HEADER (FIXED FOR MOBILE) ================= */
+    header {
+      position: relative; /* Essential for absolute positioning of menu */
+      width: 100%;
+      background: white;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      z-index: 100;
+    }
+
+    .swapped-background header {
+      background: #f9f9f9 !important;
+    }
+
+    .header-content {
+      max-width: 1100px;
+      margin: auto;
+      padding: 10px 20px; /* Added side padding for logo/icon breathing room */
+      display: flex;
+      justify-content: space-between; /* Pushes Logo left, Icon right */
+      align-items: center;
+    }
+
+    .logo img {
+      width: 100%;
+      max-width: 220px;
+      height: 53px;
+      
+      object-fit: contain;
+      display: block;
+    }
+
+    /* Menu Button */
+    .menu-btn {
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 5px;
+      margin-top: 19px;
+    }
+
+    /* Thin Lines for Hamburger */
+    .menu-btn span {
+      display: block;
+      width: 28px;
+      height: 2px;
+      background: #356fa2;
+      margin: 6px 0;
+      transition: 0.4s;
+      border-radius: 2px;
+    }
+
+    /* Hamburger Animation */
+    .menu-btn.change span:nth-child(1){ transform:translateY(8px) rotate(-45deg); }
+    .menu-btn.change span:nth-child(2){ opacity:0; }
+    .menu-btn.change span:nth-child(3){ transform:translateY(-8px) rotate(45deg); }
+
+    /* Dropdown Menu (MOBILE FIX) */
+    .nav-links {
+      position: absolute; /* Takes it out of the flex flow */
+      top: 100%;          /* Positions it exactly below the header */
+      left: 0;
+      width: 100%;
+      background-color: #0a1a2f;
+      color: white;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease-in-out;
+      z-index: 99;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+
+    .nav-links.open {
+      max-height: 350px;
+      overflow-y: auto;
+    }
+
+    .nav-links ul {
+      list-style: none;
+      padding: 15px 25px;
+      margin: 0;
+    }
+
+    .nav-links li {
+      padding: 12px 0;
+      font-size: 1.125rem;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+
+    .nav-links li:last-child { border-bottom: none; }
+
+    .nav-links li a {
+      text-decoration: none;
+      color: white;
+      display: block;
+    }
+
+    .nav-links li:hover a {
+      color: #00c853;
+    }
+
+
+    /* ================= MAIN CONTENT ================= */
+    main {
+      margin-top: 89px; /* Adjusted for mobile flow */
+      text-align: center;
+      background: #ffffff;
+      padding: 25px 20px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+      width: 87%;
+      max-width: 400px;
+      margin-bottom: 100px;
+      position: relative;
+      cursor: pointer;
+      transition: background-color 0.5s ease, box-shadow 0.5s ease;
+    }
+
+    .swapped-background main {
+      background: #f9f9f9 !important;
+    }
+
+    main::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 55px;
+      height: 4px;
+      background-color: #19609d;
+    }
+
+    /* Typography */
+    .titlee {
+      margin-top: 20px;
+      color: #2c7abe;
+      font-size: 1.25rem; 
+      font-weight: 600;
+    }
+
+    .title {
+      color: #2473b8;
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin-top: 14px;
+      margin-bottom: 14px;
+      text-align: center;
+      position: relative;
+    }
+
+    .title-line {
+      content: "";
+      display: block;
+      width: 250px;
+      height: 0.9px;
+      background-color: #dddddd;
+      margin: 24px auto 0;
+      border-radius: 2px;
+    }
+
+    /* Photo & Watermarks */
+    .photo {
+      position: relative;
+      display: inline-block;
+      overflow: hidden;
+      width: 100%;
+      max-width: 150px;
+      height: auto;
+    }
+
+    .photo img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 0;
+    }
+
+.watermark {
+  position: absolute;
+  font-size: 22px;       /* Increased size as requested */
+  font-weight: 700;
+  color: rgba(0,0,0,0.15);
+  white-space: nowrap;
+  pointer-events: none;
+  transform: rotate(-45deg);
+  transform-origin: left bottom;
+  left: -15px;           /* Adjusted to ensure text starts from the edge */
+}
+
+/* Middle Line */
+.watermark.line1 {
+    bottom: -130px;
+}
+
+/* Bottom Line */
+.watermark.line2 {
+    bottom: 2px;
+}
+
+/* Top Line */
+.watermark.line3 {
+    top: 100px;
+    bottom: auto; /* Ensures top takes priority */
+}
+    /* Info Styles */
+    .info p {
+      margin-bottom: 6px;
+      font-size: 1rem;
+      color: #5a5b5d;
+    }
+
+    .label {
+      font-weight: bold;
+      font-size: 1.0625rem; 
+      margin-top: 20px;
+    }
+
+    .labell {
+      font-weight: 430;
+      margin-top: 20px;
+    }
+
+    .login-btn {
+      background: #004b8d;
+      color: white;
+      font-size: 1rem;
+      font-weight: 600;
+      border: none;
+      border-radius: 4px;
+      padding: 10px 20px;
+      margin-top: 20px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .login-btn:hover {
+      background: #0065c0;
+    }
+
+    footer {
+      text-align: center;
+      padding: 15px 10px;
+      font-size: 0.8125rem; 
+      color: #444;
+      border-top: 1px solid #ddd;
+      background: #fff;
+      width: 100%;
+      margin-top: auto;
+    }
+
+    .swapped-background footer {
+      background: #f9f9f9 !important;
+    }
+
+    /* ============================================================= */
+    /* =================== DESKTOP VIEW OVERRIDES ================== */
+    /* ============================================================= */
+   @media(min-width: 992px){
+      
+      .menu-btn { display: none; }
+      
+      .header-content {
+          padding: 10px 0px;
+          max-width: 1150px;
+      }
+
+      .logo img {
+        height: 55px;
+        max-width: 300px;
+      }
+
+      /* Desktop Navigation (PAGES) - FIXED */
+      .nav-links {
+          position: static;
+          max-height: none;
+          /* FIX: Force Transparent Background on Desktop */
+          background: transparent !important; 
+          width: auto;
+          overflow: visible;
+          display: block;
+          box-shadow: none;
+      }
+      
+      .nav-links ul {
+          display: flex;
+          gap: 35px;
+          padding: 0;
+      }
+      
+      .nav-links li {
+          padding: 0;
+          border: none;
+      }
+      
+      .nav-links a {
+          /* FIX: Make text BLACK on Desktop */
+          color: #2d2c2c !important; 
+          font-weight: 750;
+          font-size: 14px;
+          text-transform: uppercase;
+      }
+      
+      .nav-links li:hover a { color: #004b8d !important; }
+     /* 2. Main Container Desktop */
+      main {
+          max-width: 730px;
+          width: 95%;
+          margin-top: 140px;
+          padding: 40px 60px;
+          text-align: left; 
+          background: white !important; 
+          box-shadow: none; 
+          position: relative; /* Ensure ::before is positioned relative to main */
+      }
+      
+      /* THE BLUE LINE FIX */
+      main::before { 
+          display: block;        /* Make it visible */
+          content: "";
+          position: absolute;
+          top: 0;
+          left: 35px;            /* Aligns with the padding of the content */
+          width: 67px;           /* Length of the blue line */
+          height: 5px;           /* Thickness of the line */
+          background-color: #19609d; /* The blue color */
+      } 
+
+      /* Title Section - Centered */
+      .header-title-box {
+          text-align: center;
+          margin-bottom: 40px;
+          border-bottom: 1px solid #eee;
+          padding-bottom: 20px;
+      }
+
+      .titlee, .title {
+          display: inline-block;
+          font-size: 1.3rem;
+          color: #2c7abe;
+          margin: 0 4px;
+      }
+      .title-line { display: none; }
+
+      /* 3. GRID SYSTEM - Top Section (Photo + Right Info) */
+      .desktop-top-row {
+          display: flex;
+          align-items: flex-start;
+          gap: 60px;
+          padding-bottom: 40px;
+          margin-bottom: 0px;
+      }
+
+      .photo {
+          width: 180px;
+          
+          height: auto;
+          max-width: none;
+          flex-shrink: 0;
+          margin: 0;
+      }
+      /* === WATERMARK (SIZE INCREASED) === */
+  /* === WATERMARK CSS ONLY === */
+/* === WATERMARK CSS === */
+.watermark {
+  position: absolute;
+  font-size: 22px;       /* Increased size as requested */
+  font-weight: 700;
+  color: rgba(0,0,0,0.15);
+  white-space: nowrap;
+  pointer-events: none;
+  transform: rotate(-45deg);
+  transform-origin: left bottom;
+  left: -15px;           /* Adjusted to ensure text starts from the edge */
+}
+
+/* Middle Line */
+.watermark.line1 {
+    bottom: -130px;
+}
+
+/* Bottom Line */
+.watermark.line2 {
+    bottom: 2px;
+}
+
+/* Top Line */
+.watermark.line3 {
+    top: 100px;
+    bottom: auto; /* Ensures top takes priority */
+}
+      
+      /* Right Info Grid */
+      .desktop-right-info {
+          display: grid;
+          grid-template-columns: 180px 1fr; 
+          row-gap: 20px;
+          width: 100%;
+          align-self: center; 
+      }
+
+      /* Desktop Data Pairs */
+      .data-pair {
+          display: block; 
+      }
+      
+      /* In Top Section: Use Subgrid logic */
+      .desktop-right-info .data-pair {
+          display: contents; 
+      }
+      
+      .desktop-right-info .labell,
+      .desktop-right-info .label {
+          margin: 0;
+          font-weight: 500;
+          color: #666;
+          font-size: 0.9rem;
+          text-transform: uppercase;
+      }
+      
+      .desktop-right-info p:not(.label):not(.labell) {
+           color: #333;
+           font-weight: 400;
+           font-size: 0.95rem;
+      }
+
+
+      /* 4. GRID SYSTEM - Bottom Section (3 Columns) */
+      .desktop-bottom-grid {
+          display: grid;
+          grid-template-columns: 1fr 1fr 1.2fr;
+          column-gap: 30px;
+          row-gap: 40px;
+          margin-top: 10px;
+      }
+
+      .desktop-bottom-grid .data-pair {
+          display: flex;
+          flex-direction: column;
+      }
+      
+      .desktop-bottom-grid .labell,
+      .desktop-bottom-grid .label {
+          margin: 0 0 8px 0;
+          font-weight: 400;
+          color: #666;
+          font-size: 0.9rem;
+      }
+
+      .desktop-bottom-grid p:not(.label):not(.labell) {
+          margin: 0;
+          color: #333;
+          font-size: 1rem;
+      }
+
+      .btn-wrapper {
+          text-align: center;
+          margin-top: 60px;
+      }
+      
+      .login-btn {
+          padding: 12px 30px;
+          font-size: 1.1rem;
+          border-radius: 2px;
+          background-color: #0060aa;
+      }
+    }
